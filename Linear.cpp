@@ -1,8 +1,9 @@
 #include<iostream>
-#include<math.h>
 #include<limits.h>
 #include<stdio.h>
 #include<fstream>
+#include<cstdlib>
+#include<time.h>
 
 using namespace std;
 
@@ -17,15 +18,18 @@ int main(){
         int averagecase=0;
         int totalcomparisons=0;
 
+        srand(time(0));
+
         int arr[size];
-        for(int j=1;j<=size;j++){
-            arr[j-1]=i;
+        for(int j=0;j<size;j++){
+            arr[j]=rand()%(size+1);
         }
 
         int test[size+1];
-        for(int j=1;j<=size+1;j++){
-            test[j-1]=j;
+        for(int j=0;j<size;j++){
+            test[j]=arr[j];
         }
+        test[size] = size+1;
 
         //comparing test cases
         for(int j=0;j<size+1;j++){
@@ -42,7 +46,7 @@ int main(){
             bestcase=min(bestcase,comparison);
             Worstcase=max(Worstcase,comparison);
         }
-        averagecase=(totalcomparisons/2)/size;
+        averagecase=(totalcomparisons)/(size+1);
 
         outputfile<< size <<","<< bestcase <<","<< Worstcase<<","<< averagecase<<endl;
 
